@@ -1,0 +1,8 @@
+Makefile
+__pycache__
+*.swp
+*.pyc
+.venv/
+.grind
+.DS_Store
+tests/

@@ -1,0 +1,244 @@
+<html><head></head><body><h1>Asteroids Part 2</h1>
+
+<p>Nearly everyone has played or at least heard of the famous arcade game
+Asteroids, but if you have not, you can
+<a href="http://www.freeasteroids.org">play it here</a>. The game involves a
+player-controlled spaceship that can turn left or right, accelerate forward, and
+shoot bullets. A collection of rocks (asteroids) move through space, potentially
+on a collision course with the spaceship. If a collision between the spaceship
+and a rock occurs, the spaceship is destroyed. If a bullet collides with a
+rock, the rock and bullet are both destroyed. The objective of the game is to
+eliminate all of the rocks by successfully shooting them from the spaceship,
+before a devastating collision incident occurs.</p>
+
+<h2>Assignment</h2>
+
+<p>Your assignment is to recreate a simple Asteroids game using Python and
+<a href="http://www.pygame.org/">Pygame</a>. The assignment will consist of two sequential
+parts. For this second part, you are required to add implementions for the
+following features of the game:</p>
+
+<ol>
+<li>A bullet must fire from the ship and travel in the direction the ship is facing at the time.
+The bullet will only stay active for a limited amount of time after being fired.  Then,
+it should disappear.</li>
+<li>Collisions between any rock and the bullet will cause the bullet and the rock to disappear.</li>
+<li>Collisions between any rock and the ship will cause the game to end.</li>
+<li>All rocks being destroyed will cause the game to end.</li>
+<li>Stars will be displayed, and they will twinkle, becoming brighter and dimmer.</li>
+</ol>
+
+<p>For part 2 of the assignment, only the above additional functionality is
+required. You are welcome to continue working on additional features once you
+complete the requirements for part 2, but it is your responsibility to complete
+the requirements for part 2 of the assignment first, and submit it by the due
+date.</p>
+
+<p>For this assignment, you are required to demonstrate use of the object oriented principles
+inheritance, polymorphism and aggregation when implementing the classes that
+have been designed for you to represent the game and its various components.</p>
+
+<p>You should use your solution to part 1 of the assignment as a starting point.
+Begin by copying your files from part 1 (movable.py, rock.py, etc.) into this
+directory.</p>
+
+<h2>Required Classes</h2>
+
+<p>The required classes are listed in the <a href="asteroids-part2-uml.pdf">UML Diagram</a>.
+Not all of the methods will be described in detail here.  For example, most
+getter methods will not be listed.  However, if they are in the UML diagram,
+they are required.  If you have questions about the required functionality,
+please ask questions in class or in the discussion forums.</p>
+
+<p>Only changes to part 1 classes are listed here.</p>
+
+<p><object data="asteroids-part2-uml.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="asteroids-part2-uml.pdf"/>
+        This browser does not support PDFs. Please download the PDF to view it: <a href="asteroids-part2-uml.pdf">Download PDF</a>.<p></p>
+    
+</object></p>
+
+<h3>Movable Class</h3>
+
+<p><em>Movable Data Members</em></p>
+
+<ul>
+<li><code>mActive</code> boolean value, whether the object is active or not.</li>
+</ul>
+
+<p><em>Movable Methods</em></p>
+
+<ul>
+<li><p><code>__init__</code> initializes <code>mActive</code> to true.</p></li>
+
+<li><p><code>getActive</code> returns the value of the <code>mActive</code> data member</p></li>
+
+<li><p><code>setActive</code> updates the data member to the value in the parameter.</p></li>
+
+<li><p><code>hits</code> returns true if this object&#39;s &#34;circular&#34; area overlaps with that of the other object.  Use the circle collision technique discussed in class.</p></li>
+
+<li><p><code>getRadius</code> is an abstract method.  It should <code>raise NotImplementedError</code>.</p></li>
+</ul>
+
+<h3>Rotatable Class</h3>
+
+<p><em>Rotatable Data Members</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<p><em>Rotatable Methods</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<h3>Polygon Class</h3>
+
+<p><em>Polygon Data Members</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<p><em>Polygon Methods</em></p>
+
+<ul>
+<li><code>getRadius</code> For each point in the original polygon, calculate the distance from the origin.  Return the average of these distances.  If there are no points, return 0.</li>
+</ul>
+
+<h3>Ship Class</h3>
+
+<p><em>Ship Data Members</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<p><em>Ship Methods</em></p>
+
+<ul>
+<li><code>fire</code> Creates a bullet and returns it.  The bullet should be created with the location of the ship&#39;s rotated and translated first point.  Also, the bullet will have the same velocity components as the ship and the same rotation as the ship.</li>
+</ul>
+
+<h3>Rock Class</h3>
+
+<p><em>Rock Data Members</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<p><em>Rock Methods</em></p>
+
+<ul>
+<li>No changes</li>
+</ul>
+
+<h3>Circle Class</h3>
+
+<p><em>Circle Data Members</em></p>
+
+<ul>
+<li><p><code>mRadius</code> is a number measured in pixels.  The radius of the circle.</p></li>
+
+<li><p><code>mColor</code> is a PyGame color, a 3-tuple of integers in the range 0-255 describing the red, green and blue channels of the color.</p></li>
+</ul>
+
+<p><em>Circle Methods</em></p>
+
+<ul>
+<li><p><code>__init__</code> uses constructor chaining to initialize the <code>Rotatable</code> data members, and sets the object&#39;s radius from the paramater, and sets the color to white.</p></li>
+
+<li><p><code>setRadius</code> updates the data member, but only if the new value is at least 1.</p></li>
+
+<li><p><code>setColor</code> updates the data member.  It assumes the new color is valid.</p></li>
+
+<li><p><code>draw</code> Uses the PyGame functions to draw the circle described by the <code>Movable</code> position and the radius.</p></li>
+</ul>
+
+<h3>Bullet Class</h3>
+
+<p><em>Bullet Data Members</em></p>
+
+<ul>
+<li><code>mAge</code> the number of seconds the bullet has been in existence.</li>
+</ul>
+
+<p><em>Bullet Methods</em></p>
+
+<ul>
+<li><p><code>__init__</code> uses constructor chaining to initialize all <code>Circle</code> data members. Bullets all have a radius of 3. Initializes the age of the bullet to 0. Accelerates the bullet 100.0 units. Move the bullet 0.1 seconds worth of movement. Without this, it will hit the ship.</p></li>
+
+<li><p><code>setAge</code> updates the data member, assuming the parameter is correct.</p></li>
+
+<li><p><code>evolve</code> moves the bullet.  Adds <code>dt</code> to the age of the bullet.  If the bullet is more than 6 seconds old, makes it inactive.</p></li>
+</ul>
+
+<h3>Star Class</h3>
+
+<p><em>Star Data Members</em></p>
+
+<ul>
+<li><code>mBrightness</code> an integer value.  The current star brightness, in the range 0 to 255.</li>
+</ul>
+
+<p><em>Star Methods</em></p>
+
+<ul>
+<li><p><code>__init__</code> uses constructor chaining to initialize all <code>Circle</code> data members.  Stars have no speed, rotation of 0, and radius of 2.  Initializes the brightness to a random value.</p></li>
+
+<li><p><code>setBrightness</code> updates the data member, but only if the new brightness is within the range specified above.  If the brightness changes, update the color as well.</p></li>
+
+<li><p><code>evolve</code> tries to changes the brightness by adding 10, subtracting 10, or doing nothing, each with equal probability.</p></li>
+</ul>
+
+<h3>Asteroids Class</h3>
+
+<p><em>Asteroids Data Members</em></p>
+
+<ul>
+<li><p><code>mBullets</code> a list of all <code>Bullet</code> objects active in the game</p></li>
+
+<li><p><code>mStars</code> a list of all <code>Star</code> objects created</p></li>
+
+<li><p><code>mObjects</code> a list of all objects active in the game, including <code>Bullet</code>s and <code>Star</code>s.</p></li>
+</ul>
+
+<p><em>Asteroids Methods</em></p>
+
+<ul>
+<li><p><code>__init__</code> Create 20 <code>Star</code>s in random locations and initialize the <code>Bullet</code> list to an empty list. Store the <code>Star</code>s in the correct lists.</p></li>
+
+<li><p><code>fire</code> If the maximum number of active bullets (3) has not been reached, create a new bullet, add it to the appropriate lists.  Refer to the <code>Ship</code> and <code>Bullet</code> classes.</p></li>
+
+<li><p><code>evolveAllObjects</code>  Call evolve on all objects.</p></li>
+
+<li><p><code>collideShipAndBullets</code> Check and handle collisions between bullets and ship.</p></li>
+
+<li><p><code>collideShipAndRocks</code> Check and handle collisions between rocks and ship.</p></li>
+
+<li><p><code>collideRocksAndBullets</code> Check and handle collisions between bullets and rocks.</p></li>
+
+<li><p><code>removeInactiveObjects</code> Removes all inactive objects from all lists.</p></li>
+
+<li><p><code>evolve</code> Be sure that all objects evolve.  If any bullet collides with the ship, the ship and bullet should become inactive.  If any bullet collides with any rock, the rock and bullet should become inactive.  If any rock collides with the ship, the ship and bullet should become inactive.  Remove any inactive rocks and bullets from the lists.  Use the methods outlined above, in the correct order.</p></li>
+
+<li><p><code>draw</code> Be sure that all objects draw, but only if they are active.</p></li>
+</ul>
+
+<h3>main</h3>
+
+<ul>
+<li><code>game_logic</code> Add a key press to call the <code>fire</code> method.  Be sure to check <code>newkeys</code>, not <code>keys</code>.</li>
+</ul>
+
+<h2>Hints</h2>
+
+<ul>
+<li><p>Refer to the <a href="http://www.pygame.org/docs/">Pygame documentation</a> to understand which parameters are necessary when calling each of the Pygame draw methods. Specifically, you should be interested in <code>pygame.draw</code> and <code>pygame.Rect</code>.</p></li>
+
+<li><p>When creating colors, use a helpful tool to determine the RGB values. Here are two good options: <a href="https://color.adobe.com">color.adobe.com</a> and <a href="http://www.colorpicker.com/">colorpicker.com</a></p></li>
+</ul>
+</body></html>
